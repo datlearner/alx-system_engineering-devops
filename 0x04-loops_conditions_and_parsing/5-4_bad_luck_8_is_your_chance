@@ -16,4 +16,4 @@ else
     echo "Best School"
 fi
 i=$((i+1))
-doni
+done
