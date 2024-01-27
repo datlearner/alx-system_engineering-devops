@@ -3,4 +3,4 @@
 
 # shellcheck disable=SC2009
 
-ps -auxf | grep "basih"
+ps -auxf | grep "bash"
