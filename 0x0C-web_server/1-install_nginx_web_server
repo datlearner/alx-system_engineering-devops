@@ -1,8 +1,8 @@
-#!/bin/bash
-# Update package lists
+#!/usr/bin/env bash
+# Setup nginx server
 apt-get update
-apt-get install -y nginx
-sed -i 's/80 default_server/80/' /etc/nginx/sites-available/default
-/etc/init.d/nginx restart
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+chmod 777 -R /var/www/html/
 echo "Hello World!" > /var/www/html/index.html
-chmod 644 /var/www/html/index.html
+service nginx start
