@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+i:wq
+i:wq
+in/env bash
 # Script that displays information about subdomains.
 
 func () {
