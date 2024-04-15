@@ -1,0 +1,2 @@
+uns whoami command as the user provided in argument
+sudo -u "$1" whoami
