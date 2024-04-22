@@ -2,11 +2,13 @@
 '''
 gather employee data from API
 '''
+
 import re
 import requests
 import sys
 
 REST_API = "https://jsonplaceholder.typicode.com"
+
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         if re.fullmatch(r'\d+', sys.argv[1]):
@@ -25,4 +27,5 @@ if __name__ == '__main__':
             )
             if len(completed_tasks) > 0:
                 for task in completed_tasks:
-                    print('\t {}'.format(task.get('title')))        
+                    print('\t {}'.format(task.get('title')))
+
