@@ -1,25 +1,34 @@
 #!/usr/bin/python3
 """ Script that uses JSONPlaceholder API to get information about employee """
+import csv
 import requests
 import sys
+
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/'
 
-    user = '{}users/{}'.format(url, sys.argv[1])
+    userid = sys.argv[1]
+    user = '{}users/{}'.format(url, userid)
     res = requests.get(user)
     json_o = res.json()
-    print("Employee {} is done with tasks".format(json_o.get('name')), end="")
+    name = json_o.get('username')
 
-    todos = '{}todos?userId={}'.format(url, sys.argv[1])
+    todos = '{}todos?userId={}'.format(url, userid)
     res = requests.get(todos)
     tasks = res.json()
     l_task = []
     for task in tasks:
-        if task.get('completed') is True:
-            i_task.append(task)
+        l_task.append([userid,
+                       name,
+                       task.get('completed'),
+                       task.get('title')])
 
-    print("({}/{}):".format(len(l_task), len(tasks)))
-    for task in i_task:
-        print("\t {}".format(task.get("title")))
-            
+    filename = '{}.csv'.format(userid)
+    with open(filename, mode='w') as employee_file:
+        employee_writer = csv.writer(employee_file,
+                                     delimiter=',',
+                                     quotechar='"',
+                                     quoting=csv.QUOTE_ALL)
+        for task in l_task:
+            employee_writer.writerow(task)          
