@@ -1,21 +1,19 @@
 #!/usr/bin/python3
-"""getting data from an api
-"""
-
+"""Script that uses JSONPlaceholder API to get information about an employee."""
 import requests
-from sys import argv
+import sys
 
-if __name__ == '__main__':
-        endpoint = "https://jsonplaceholder.typicode.com"
-            userId = argv[1]
-                user = requests.get(endpoint + "users/{}".
-                                                format(userId), verify=False).json()
-                    todo = requests.get(endpoint + "todos?userId={}".
-                                                    format(userId), verify=False).json()
-                        completed_tasks = []
-                            for task in todo:
-                                        if task.get('completed') is True:
-                                                        completed_tasks.append(task.get('title'))
-                                                            print("Employee {} is done with tasks({}/{}):".
-                                                                              format(user.get('name'), len(completed_tasks), len(todo)))
-                                                                print("\n".join("\t {}".format(task) for task in completed_tasks))
+
+if __name__ == "__main__":
+    base_url = 'https://jsonplaceholder.typicode.com/'
+
+    user_id = sys.argv[1]
+    user_url = f'{base_url}users/{user_id}'
+    user_res = requests.get(user_url)
+    user_data = user_res.json()
+    print(f"Employee {user_data.get('name')} is done with tasks", end="")
+    todos_url = f'{base_url}todos?userId={user_id}'
+    tasks = todos_res.json()
+    completed_tasks = [task for task in tasks if task.get('completed')]
+    for task in completed_tasks:
+        print(f"\t {task.get('title')}")
