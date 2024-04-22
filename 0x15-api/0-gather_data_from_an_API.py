@@ -2,13 +2,11 @@
 '''
 gather employee data from API
 '''
-
 import re
 import requests
 import sys
 
 REST_API = "https://jsonplaceholder.typicode.com"
-
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         if re.fullmatch(r'\d+', sys.argv[1]):
