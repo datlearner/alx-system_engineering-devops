@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """ Module for a function that queries the Reddit API recursively."""
 
@@ -49,4 +48,3 @@ def count_words(subreddit, word_list, after='', word_dict={}):
         return None
 
     count_words(subreddit, word_list, aft, word_dict)
-
